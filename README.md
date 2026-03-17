@@ -10,7 +10,7 @@ This project implements an end-to-end pipeline for identifying and categorizing 
 ### 1. Image Preprocessing & Defect Detection (XOR Logic)
 The system first localizes potential defects by comparing the **Test Image** with a **Template Image**. 
 * **Algorithm:** Bitwise XOR operation is applied between the two aligned images to highlight discrepancies.
-* **Refinement:** Morphological operations (Closing/Opening) and Median filtering are used to remove noise, followed by Contour Detection to isolate defect regions.
+* **Refinement:** Morphological operations (Closing/Opening) and Dilate filtering are used to magnify defect, followed by Contour Detection to isolate defect regions.
 
 
 
@@ -34,10 +34,13 @@ The classification engine is a custom **Convolutional Neural Network (CNN)** des
 ### Model Performance
 The CNN model achieved a high level of accuracy on the test set, ensuring reliable classification even for subtle manufacturing flaws.
 
-* **Accuracy:** `98.4%`
-* **Validation Loss:** (Insert value, e.g., 0.05)
+* **Accuracy on the test dataset:** `98.4%`
 
-![Confusion Matrix](assets/confusion_matrix.png)
+![Confusion Matrix](res/confusion_matrix.png)
+ 
+* **Validation Loss:** 
+
+![train_val_loss](res/train_val_loss.png)
 
 ### Integrated Pipeline Testing
 The combined system (Detection + Classification) was tested on unseen PCB layouts. The pipeline successfully localizes the error and assigns a label with a confidence score.
