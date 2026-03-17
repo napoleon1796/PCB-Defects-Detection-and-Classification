@@ -12,8 +12,6 @@ The system first localizes potential defects by comparing the **Test Image** wit
 * **Algorithm:** Bitwise XOR operation is applied between the two aligned images to highlight discrepancies.
 * **Refinement:** Morphological operations (Closing/Opening) and Dilate filtering are used to magnify defect, followed by Contour Detection to isolate defect regions.
 
-
-
 ### 2. Defect Cropping & Normalization
 Once the defect coordinates are identified via Bounding Boxes:
 * Regions of interest (ROIs) are cropped with a 10px padding to provide context for the classifier.
@@ -51,21 +49,13 @@ The combined system (Detection + Classification) was tested on unseen PCB layout
 
 ## ⏱ Performance Benchmarking (Latency)
 
-The entire process, from loading the raw image to final classification, is optimized for industrial speed.
-
-* **Average End-to-End Latency:** `375ms`
+* **Average End-to-End Latency:** `418ms`
 
 | Stage | Process | Time (ms) |
 | :--- | :--- | :--- |
-| **Detection** | Preprocessing + XOR + Contours | ~110ms |
-| **Classification**| CNN Inference (Batch Mode) | ~230ms |
-| **Overhead** | I/O & Visualization | ~35ms |
+| **Detection** | Preprocessing + XOR + Contours | ~6ms |
+| **Classification**| CNN Inference (Batch Mode) | ~412ms |
 
-![Latency Breakdown](assets/latency_pie_chart.png)
 
 ---
 
-## 📖 Installation & Usage
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/your-username/pcb-defect-system.git](https://github.com/your-username/pcb-defect-system.git)
