@@ -31,9 +31,9 @@ def main(img_template_path, img_test_path):
             defect_img = crop__defects(img_test, x, y, w+20, h+20)
             preprocessed_img = preprocess_for_prediction(defect_img)
             prediction = model.predict(preprocessed_img)
-            label = np.argmax(prediction)+1
+            label = np.argmax(prediction)
             cv2.rectangle(img_test, (x, y), (x + w+20, y + h+20), (0, 255, 0), 1)
-            cv2.putText(img_test, f"{label}", (x, y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+            cv2.putText(img_test, CLASS_NAME[label], (x, y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
     cv2.imshow("Defects Detected", img_test)
     cv2.imshow("Template", img_template)
     cv2.waitKey(0)
