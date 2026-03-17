@@ -36,7 +36,7 @@ The CNN model achieved a high level of accuracy on the test set, ensuring reliab
 
 * **Accuracy on the test dataset:** `98.4%`
 
-![Confusion Matrix](res/confusion_matrix.png)
+![Confusion Matrix](res/test_accuracy.png)
  
 * **Validation Loss:** 
 
