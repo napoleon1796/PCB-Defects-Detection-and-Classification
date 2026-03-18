@@ -75,4 +75,6 @@ Crop defects then fed into model for classification
 
 
 ---
+## 🖼️ Dataset 
+* **DeepPCB**: https://github.com/tangsanli5201/DeepPCB
 
