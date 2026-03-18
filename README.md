@@ -24,7 +24,11 @@ The classification engine is a custom **Convolutional Neural Network (CNN)** des
 * **Feature Extraction:** Multiple Conv2D layers with ReLU activation and MaxPooling for spatial invariance.
 * **Regularization:** Dropout layers to prevent overfitting.
 * **Output:** Fully connected layers with Softmax activation to classify defect types (e.g., Short, Open, Mouse bite).
-## Architecture Flowchart
+## 🧠 3. Model Architecture (CNN)
+
+The classification engine is a custom **Convolutional Neural Network (CNN)** designed to balance high accuracy and low latency (375ms).
+
+### Architecture Flowchart
 Below is the visual representation of the data flow through the network:
 
 ```mermaid
