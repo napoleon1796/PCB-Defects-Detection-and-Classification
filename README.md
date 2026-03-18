@@ -42,7 +42,8 @@ The combined system (Detection + Classification) was tested on unseen PCB layout
 
 Template Image + Test Image ➔ **Preprocessing** ➔ Defect Localization ➔ **CNN Classification** ➔ Final Result
 * **Template image** and **Test image**
-  ![temp](res/sample_temp.jpg)                                               ![test](res/sample_test.jpg)       
+  
+  ![temp](res/sample_temp.png)                                               ![test](res/sample_temp.png)       
 
 
 ---
