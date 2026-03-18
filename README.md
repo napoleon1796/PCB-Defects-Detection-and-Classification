@@ -24,33 +24,24 @@ The classification engine is a custom **Convolutional Neural Network (CNN)** des
 * **Feature Extraction:** Multiple Conv2D layers with ReLU activation and MaxPooling for spatial invariance.
 * **Regularization:** Dropout layers to prevent overfitting.
 * **Output:** Fully connected layers with Softmax activation to classify defect types (e.g., Short, Open, Mouse bite).
-## 🧠 3. Model Architecture (CNN)
 
-The classification engine is a custom **Convolutional Neural Network (CNN)** designed to balance high accuracy and low latency (375ms).
-
-### Architecture Flowchart
-Below is the visual representation of the data flow through the network:
+The model follows a hierarchical structure to learn features from simple edges to complex defect patterns:
 
 ```mermaid
 graph TD
-    A[Input Image: 64x64x1] --> B[Conv2D: 16 filters, 3x3]
-    B --> C[ReLU Activation]
-    C --> D[MaxPooling: 2x2]
-    D --> E[Conv2D: 32 filters, 3x3]
-    E --> F[ReLU]
-    F --> G[MaxPooling: 2x2]
-    G --> H[Conv2D: 64 filters, 3x3]
-    H --> I[ReLU]
-    I --> J[MaxPooling: 2x2]
-    J --> K[Conv2D: 128 filters, 3x3]
-    K --> L[ReLU]
-    L --> M[MaxPooling: 2x2]
-    M --> N[Flatten Layer]
-    N --> O[Dense: 256 units + ReLU]
-    O --> P[Dropout: 0.5]
-    P --> Q[Dense: 6 Output Classes + Softmax]
+    A[Input: 64x64x1 Gray] --> B[Conv2D: 16 filters, 3x3]
+    B --> C[ReLU + MaxPool 2x2]
+    C --> D[Conv2D: 32 filters, 3x3]
+    D --> E[ReLU + MaxPool 2x2]
+    E --> F[Conv2D: 64 filters, 3x3]
+    F --> G[ReLU + MaxPool 2x2]
+    G --> H[Conv2D: 128 filters, 3x3]
+    H --> I[ReLU + MaxPool 2x2]
+    I --> J[Flatten Layer]
+    J --> K[Dense: 256 units + ReLU]
+    K --> L[Dropout: 0.5]
+    L --> M[Dense: 6 Classes + Softmax]
 
----
 
 ## 📊 Evaluation & Results
 
@@ -74,10 +65,10 @@ The combined system (Detection + Classification) was tested on unseen PCB layout
 
 * **Average End-to-End Latency:** `418ms`
 
-| Stage | Process | Time (ms) |
-| :--- | :--- | :--- |
-| **Detection** | Preprocessing + XOR + Contours | ~6ms |
-| **Classification**| CNN Inference (Batch Mode) | ~412ms |
+| Stage | Process | Time (ms) | Visualization |
+| :--- | :--- | :--- | :--- |
+| **Detection** | Preprocessing + XOR + Contours | ~6ms | █▒▒▒▒▒▒▒▒▒ (1.4%) |
+| **Classification**| CNN Inference (Batch Mode) | ~412ms | ██████████ (98.6%) |
 
 
 ---
