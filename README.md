@@ -14,7 +14,7 @@ The system first localizes potential defects by comparing the **Test Image** wit
 
 ### 2. Defect Cropping & Normalization
 Once the defect coordinates are identified via Bounding Boxes:
-* Regions of interest (ROIs) are cropped with a 10px padding to provide context for the classifier.
+* Regions of interest (ROIs) are cropped with a padding to provide context for the classifier.
 * All crops are resized to a fixed **64x64** resolution.
 * Grayscale conversion and pixel normalization ([0, 1]) are applied to ensure input consistency.
 
@@ -24,24 +24,7 @@ The classification engine is a custom **Convolutional Neural Network (CNN)** des
 * **Feature Extraction:** Multiple Conv2D layers with ReLU activation and MaxPooling for spatial invariance.
 * **Regularization:** Dropout layers to prevent overfitting.
 * **Output:** Fully connected layers with Softmax activation to classify defect types (e.g., Short, Open, Mouse bite).
-
-The model follows a hierarchical structure to learn features from simple edges to complex defect patterns:
-
-```mermaid
-graph TD
-    A[Input: 64x64x1 Gray] --> B[Conv2D: 16 filters, 3x3]
-    B --> C[ReLU + MaxPool 2x2]
-    C --> D[Conv2D: 32 filters, 3x3]
-    D --> E[ReLU + MaxPool 2x2]
-    E --> F[Conv2D: 64 filters, 3x3]
-    F --> G[ReLU + MaxPool 2x2]
-    G --> H[Conv2D: 128 filters, 3x3]
-    H --> I[ReLU + MaxPool 2x2]
-    I --> J[Flatten Layer]
-    J --> K[Dense: 256 units + ReLU]
-    K --> L[Dropout: 0.5]
-    L --> M[Dense: 6 Classes + Softmax]
-
+![Model_arch](res/model_arch.png)
 
 ## 📊 Evaluation & Results
 
@@ -57,7 +40,10 @@ The CNN model achieved a high level of accuracy on the test set, ensuring reliab
 ### Integrated Pipeline Testing
 The combined system (Detection + Classification) was tested on unseen PCB layouts. The pipeline successfully localizes the error and assigns a label with a confidence score.
 
-![Sample Result](assets/sample_result.png)
+Template Image + Test Image ➔ **Preprocessing** ➔ Defect Localization ➔ **CNN Classification** ➔ Final Result
+* **Template image** and **Test image**
+  ![temp](res/sample_temp.jpg)                                               ![test](res/sample_test.jpg)       
+
 
 ---
 
