@@ -42,18 +42,24 @@ The combined system (Detection + Classification) was tested on unseen PCB layout
 
 Template Image + Test Image ➔ **Preprocessing** ➔ Defect Localization ➔ **CNN Classification** ➔ Final Result
 
-* **Template image**  
+* **Template image**
+ 
   ![temp](res/sample_temp.jpg)
 * **Test image**
+
   ![test](res/sample_test.jpg)
         
 Using image processing algorithms to locate error
 * **error location**
+  
   ![mask](res/sample_mask.png)
 * **defect detection**
+  
   ![detection](res/sample_detection.png)
+  
 Crop defects then fed into model for classification
 * **result image**
+  
   ![result](res/sample_res.png)
 
 ---
